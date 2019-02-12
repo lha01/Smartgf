@@ -1,0 +1,53 @@
+<!-- index.html -->
+<html>
+
+<head>
+    <style>
+        #main {
+            background:#000;
+        }
+        #player {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+            margin: auto;
+            z-index: 9999999999;
+        }
+    </style>
+    <script type="text/javascript">
+    var port = 5000
+    var ws = new WebSocket("wss://0.0.0.0:"+port+"/shenron");
+    ws.onopen = function() {
+        ws.send('open');
+    };
+    ws.onmessage = function(e) {
+                    document.getElementById("text-field").innerHTML = e.data;
+                    };
+/*    function doReload() {
+
+        // reloadメソッドによりページをリロード
+        window.location.reload();
+    }
+
+    window.addEventListener('load', function() {
+
+        // ページ表示完了した5秒後にリロード
+        setTimeout(doReload, 5000);
+    });
+*/
+    </script>
+</head>
+
+<body id='main'>
+    <video id="player" autoplay muted>
+        <source src="https://gsya-80fd3.firebaseapp.com/miku.mp4" type="video/mp4">
+    </video>
+    <center>
+    <h1 id="text-field"></h1>
+    </center>
+    <script src="{{ url_for('static', filename='jquery/jquery.js') }}"></script>
+</body>
+
+</html>

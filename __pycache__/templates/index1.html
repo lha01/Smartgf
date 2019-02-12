@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | smart girl friend v2</title>
+    <link rel="shortcut icon" href="./static/TemplateData/favicon.ico">
+    <link rel="stylesheet" href="./static/TemplateData/style.css">
+    <script src="{{ url_for('static', filename='Build/UnityLoader.js') }}"></script>
+    <script src="{{ url_for('static', filename='TemplateData/UnityProgress.js') }}"></script>
+    <script>
+    var gameInstance = UnityLoader.instantiate("gameContainer", "./static/Build/WebGL.json", { onProgress: UnityProgress });
+    </script>
+    <script>
+    var port = 443
+    var ws = new WebSocket("ws://0.0.0.0:" + port + "/shenron");
+    ws.onopen = function() {
+        ws.send('open');
+    };
+    ws.onmessage = function(e) {
+        document.getElementById("text-field").innerHTML = e.data;
+    };
+    /*    function doReload() {
+
+            // reloadメソッドによりページをリロード
+            window.location.reload();
+        }
+
+        window.addEventListener('load', function() {
+
+            // ページ表示完了した5秒後にリロード
+            setTimeout(doReload, 5000);
+        });
+    */
+    </script>
+</head>
+
+<body>
+    <center>
+        <h1 id="text-field"></h1>
+    </center>
+    <div id="gameContainer" style="width:100%; height:100%"></div>
+    <!--
+    <script src="{{ url_for('static', filename='js/application.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/reconnecting-websocket.min.js') }}"></script>
+  -->
+</body>
+</html>

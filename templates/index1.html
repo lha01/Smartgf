@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | smart girl friend v2</title>
+    <link rel="shortcut icon" href="./static/TemplateData/favicon.ico">
+    <link rel="stylesheet" href="./static/TemplateData/style.css">
+    <script src="{{ url_for('static', filename='Build/UnityLoader.js') }}"></script>
+    <script src="{{ url_for('static', filename='TemplateData/UnityProgress.js') }}"></script>
+    <script>
+    var gameInstance = UnityLoader.instantiate("gameContainer", "./static/Build/webgl3.json", { onProgress: UnityProgress });
+    window.onmessage = function(event){
+        var message = event.data;
+        // 内容の確認
+        document.getElementById( "interface" ).textContent = event ;
+        console.log( event ) ;
+    };
+    </script>
+    <!--
+    <script>
+    var ws = new WebSocket("wss://smartgf.herokuapp.com/shenron");
+    ws.onopen = function(event) {
+        console.log(event);
+    };
+    ws.onmessage = function(event) {
+        console.log(event);
+    };
+    ws.onclose = function(event) {
+        console.log(event);
+    };
+    </script>
+-->
+</head>
+<body>
+    <pre><span id = "interface"></span>
+        <span class = "event"></span>
+    </pre>
+    <div id="gameContainer" style="width:100%; height:150%"></div>
+</body>
+</html>
