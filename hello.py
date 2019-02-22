@@ -66,16 +66,11 @@ def post():
 		title = data["title"]
 		url = data["url"]
 		img = data["img"]
-		result = jsonify({"fulfillmentText": '<speak><audio src = "https://gsya-80fd3.firebaseapp.com/'+i+'.wav"/><sub alias="">'+'料理名は'+title+'urlは'+url+'だよ！'+'</sub></speak>'},
-		{
-			"platform": "ACTIONS_ON_GOOGLE",
-			"basicCard": {
-				"image": {
-					"imageUri": img,
-					"accessibilityText": title
-				}
-			}
-		})
+		result = 
+		jsonify({"fulfillmentText": '<speak><audio src = "https://gsya-80fd3.firebaseapp.com/'+i+'.wav"/><sub alias="">'
+			+'料理名は'+title
+			+'urlは'+url+'だよ！'
+			+'</sub></speak>'})
 		return make_response(result)
 	elif req == 'greeting':
 		message.set(req)
