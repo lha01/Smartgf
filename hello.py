@@ -67,10 +67,7 @@ def post():
 		url = data["url"]
 		img = data["img"]
 		result = 
-		jsonify({"fulfillmentText": '<speak><audio src = "https://gsya-80fd3.firebaseapp.com/'+i+'.wav"/><sub alias="">'
-			+'料理名は'+title
-			+'urlは'+url+'だよ！'
-			+'</sub></speak>'})
+		jsonify({"fulfillmentText": '<speak><audio src = "https://gsya-80fd3.firebaseapp.com/'+i+'.wav"/><sub alias="">'+'料理名は'+title+'urlは'+url+'だよ！'+'</sub></speak>'})
 		return make_response(result)
 	elif req == 'greeting':
 		message.set(req)
