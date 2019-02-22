@@ -67,48 +67,15 @@ def post():
 		url = data["url"]
 		img = data["img"]
 		result = jsonify({"fulfillmentText": '<speak><audio src = "https://gsya-80fd3.firebaseapp.com/'+i+'.wav"/><sub alias="">'+'料理名は'+title+'urlは'+url+'だよ！'+'</sub></speak>'},
-		"fulfillmentMessages": [{
-		"payload": {
-		"google": {
-		"expectUserResponse": true,
-		"richResponse": {
-		"items": [
 		{
-			"simpleResponse": {
-			"textToSpeech": "this is a simple response"
+			"platform": "ACTIONS_ON_GOOGLE",
+			"basicCard": {
+				"image": {
+					"imageUri": img,
+					"accessibilityText": title
+				}
 			}
-		}
-		]
-		}
-		}
-		}
-		},
-      {
-        "platform": "ACTIONS_ON_GOOGLE",
-        "basicCard": {
-          "image": {
-            "imageUri": "https://img.cpcdn.com/recipes/5520244/100x141c/030afbd2081789967150204c4f0b4d1d.jpg?u=12682447&amp;p=155076396",
-            "accessibilityText": "トマト・アボカドのチーズ焼き"
-          },
-          "buttons": [
-            {
-              "title": "トマト・アボカドのチーズ焼き",
-              "openUriAction": {
-                "uri": "https://cookpad.com/recipe/5520244"
-              }
-            }
-          ]
-        }
-      },
-      {
-        "text": {
-          "text": [
-            ""
-          ]
-        }
-      }
-    ]
-		)
+		})
 		return make_response(result)
 	elif req == 'greeting':
 		message.set(req)
