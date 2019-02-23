@@ -67,9 +67,40 @@ def post():
 		url = data["url"]
 		img = data["img"]
 		result = jsonify(
-			{"fulfillmentText": '<speak><audio src = "https://gsya-80fd3.firebaseapp.com/'
-			+i+'.wav"/><sub alias="">'
-			+'料理名は'+title+'urlは'+url+'だよ！'+'</sub></speak>'
+			{"fulfillmentText": "",
+			"fulfillmentMessages": [],
+			"payload": {
+				"google": {
+					"expectUserResponse": True,
+					"richResponse": {
+						"items": [
+							{
+								"simpleResponse": {
+									"textToSpeech":'<speak><audio src = "https://gsya-80fd3.firebaseapp.com/'+i+'.wav"/><sub alias="">"これなんてどうでしょう？"</sub></speak>'
+								}
+							},
+							{
+								"basicCard": {
+									"title": title,
+									"image": {
+										"url": img,
+										"accessibilityText": "actex"
+									},
+									"buttons": [{
+										"title": "サイトへ飛ぶ",
+										"openUrlAction": {
+											"url": url
+										}
+									}],
+									"imageDisplayOptions": "WHITE"
+								}
+							}
+						]
+					}
+				}
+			},
+			"outputContexts": [],
+			"followupEventInput": {}
 			})
 		return make_response(result)
 	elif req == 'greeting':
